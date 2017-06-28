@@ -170,9 +170,10 @@ X=np.linspace(0, 60000, 1000)
 plt.plot(X, t0 + t1*X, "b")
 plt.text(5000, 3.1, r"$\theta_0 = 4.85$", fontsize=14, color="b")
 plt.text(5000, 2.2, r"$\theta_1 = 4.91 \times 10^{-5}$", fontsize=14, color="b")
-save_fig('best_fit_model_plot')
-plt.show()
 
+# COMMAND ----------
+
+display(plt.show())
 
 # COMMAND ----------
 
@@ -192,8 +193,10 @@ plt.text(5000, 6.6, r"$\theta_1 = 4.91 \times 10^{-5}$", fontsize=14, color="b")
 plt.plot([cyprus_gdp_per_capita, cyprus_gdp_per_capita], [0, cyprus_predicted_life_satisfaction], "r--")
 plt.text(25000, 5.0, r"Prediction = 5.96", fontsize=14, color="b")
 plt.plot(cyprus_gdp_per_capita, cyprus_predicted_life_satisfaction, "ro")
-save_fig('cyprus_prediction_plot')
-plt.show()
+
+# COMMAND ----------
+
+display(plt.show())
 
 # COMMAND ----------
 
@@ -286,8 +289,9 @@ t0full, t1full = lin_reg_full.intercept_[0], lin_reg_full.coef_[0][0]
 X = np.linspace(0, 110000, 1000)
 plt.plot(X, t0full + t1full * X, "k")
 
-save_fig('representative_training_data_scatterplot')
-plt.show()
+# COMMAND ----------
+
+display(plt.show())
 
 # COMMAND ----------
 
@@ -305,8 +309,10 @@ pipeline_reg = pipeline.Pipeline([('poly', poly), ('scal', scaler), ('lin', lin_
 pipeline_reg.fit(Xfull, yfull)
 curve = pipeline_reg.predict(X[:, np.newaxis])
 plt.plot(X, curve)
-save_fig('overfitting_model_plot')
-plt.show()
+
+# COMMAND ----------
+
+display(plt.show())
 
 # COMMAND ----------
 
@@ -339,8 +345,10 @@ plt.plot(X, t0ridge + t1ridge * X, "b", label="Regularized linear model on parti
 
 plt.legend(loc="lower right")
 plt.axis([0, 110000, 0, 10])
-save_fig('ridge_model_plot')
-plt.show()
+
+# COMMAND ----------
+
+display(plt.show())
 
 # COMMAND ----------
 
@@ -357,6 +365,7 @@ model = sklearn.linear_model.LinearRegression()
 # COMMAND ----------
 
 # with this k-neighbors regression model:
+import sklearn.neighbors
 model = sklearn.neighbors.KNeighborsRegressor(n_neighbors=3)
 
 # COMMAND ----------
@@ -370,6 +379,3 @@ model.fit(X, y)
 # Make a prediction for Cyprus
 X_new = np.array([[22587.0]])  # Cyprus' GDP per capita
 print(model.predict(X_new)) # outputs [[ 5.76666667]]
-
-# COMMAND ----------
-
